@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="400" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+    <!-- Fondo -->
+    <rect width="800" height="400" fill="#ffffff"/>
+    
+    <!-- Título -->
+    <text x="400" y="40" text-anchor="middle" font-family="Arial" font-size="24" fill="#2c3e50" font-weight="bold">
+        Proceso de Ósmosis Inversa
+    </text>
+
+    <!-- Contenedor de agua sin tratar -->
+    <g id="untreated-water">
+        <rect x="50" y="100" width="200" height="250" fill="#e3f2fd" stroke="#2196f3" stroke-width="2"/>
+        <text x="150" y="90" text-anchor="middle" font-family="Arial" font-size="16" fill="#2c3e50">
+            Agua sin tratar
+        </text>
+        <!-- Partículas y contaminantes -->
+        <circle cx="100" cy="150" r="4" fill="#ff5722"/>
+        <circle cx="180" cy="200" r="4" fill="#ff5722"/>
+        <circle cx="120" cy="250" r="4" fill="#ff5722"/>
+        <circle cx="200" cy="280" r="4" fill="#ff5722"/>
+        <circle cx="90" cy="320" r="4" fill="#ff5722"/>
+    </g>
+
+    <!-- Membrana semipermeable -->
+    <g id="membrane">
+        <rect x="350" y="100" width="30" height="250" fill="#90caf9" stroke="#1976d2" stroke-width="2"/>
+        <text x="365" y="90" text-anchor="middle" font-family="Arial" font-size="16" fill="#2c3e50">
+            Membrana
+        </text>
+        <!-- Detalles de la membrana -->
+        <line x1="350" y1="120" x2="380" y2="120" stroke="#1976d2" stroke-width="1"/>
+        <line x1="350" y1="140" x2="380" y2="140" stroke="#1976d2" stroke-width="1"/>
+        <line x1="350" y1="160" x2="380" y2="160" stroke="#1976d2" stroke-width="1"/>
+        <line x1="350" y1="180" x2="380" y2="180" stroke="#1976d2" stroke-width="1"/>
+        <line x1="350" y1="200" x2="380" y2="200" stroke="#1976d2" stroke-width="1"/>
+        <line x1="350" y1="220" x2="380" y2="220" stroke="#1976d2" stroke-width="1"/>
+        <line x1="350" y1="240" x2="380" y2="240" stroke="#1976d2" stroke-width="1"/>
+        <line x1="350" y1="260" x2="380" y2="260" stroke="#1976d2" stroke-width="1"/>
+        <line x1="350" y1="280" x2="380" y2="280" stroke="#1976d2" stroke-width="1"/>
+        <line x1="350" y1="300" x2="380" y2="300" stroke="#1976d2" stroke-width="1"/>
+        <line x1="350" y1="320" x2="380" y2="320" stroke="#1976d2" stroke-width="1"/>
+    </g>
+
+    <!-- Agua purificada -->
+    <g id="pure-water">
+        <rect x="480" y="100" width="200" height="250" fill="#bbdefb" stroke="#2196f3" stroke-width="2"/>
+        <text x="580" y="90" text-anchor="middle" font-family="Arial" font-size="16" fill="#2c3e50">
+            Agua purificada
+        </text>
+    </g>
+
+    <!-- Flechas de presión -->
+    <g id="pressure-arrows">
+        <path d="M 280 225 L 330 225" stroke="#2196f3" stroke-width="3" marker-end="url(#arrowhead)"/>
+        <text x="305" y="215" text-anchor="middle" font-family="Arial" font-size="14" fill="#2c3e50">
+            Presión
+        </text>
+    </g>
+
+    <!-- Definición de la flecha -->
+    <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#2196f3"/>
+        </marker>
+    </defs>
+
+    <!-- Leyenda -->
+    <g id="legend" transform="translate(50, 370)">
+        <circle cx="10" cy="0" r="4" fill="#ff5722"/>
+        <text x="25" y="5" font-family="Arial" font-size="12" fill="#2c3e50">Contaminantes</text>
+        
+        <rect x="100" y="-8" width="16" height="16" fill="#90caf9" stroke="#1976d2" stroke-width="1"/>
+        <text x="125" y="5" font-family="Arial" font-size="12" fill="#2c3e50">Membrana semipermeable</text>
+        
+        <rect x="250" y="-8" width="16" height="16" fill="#bbdefb" stroke="#2196f3" stroke-width="1"/>
+        <text x="275" y="5" font-family="Arial" font-size="12" fill="#2c3e50">Agua purificada</text>
+    </g>
+</svg>

@@ -1,0 +1,473 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<nav class="treatment-nav">
+				<a href="#osmosis" class="nav-item">Ósmosis Inversa</a>
+				<a href="#potable" class="nav-item">Agua Potable</a>
+				<a href="#residual" class="nav-item">Aguas Residuales</a>
+				<a href="#industrial" class="nav-item">Tratamiento Industrial</a>
+			</nav>
+
+			<section id="osmosis" class="treatment-section osmosis-section">
+				<h2>Ósmosis Inversa</h2>
+				<div class="osmosis-content">
+					<div class="osmosis-info">
+						<h3>¿Qué es la Ósmosis Inversa?</h3>
+						<p>La ósmosis inversa es un proceso de purificación del agua que utiliza una membrana semipermeable para eliminar iones, partículas y moléculas indeseadas. Este proceso invierte el flujo osmótico natural mediante la aplicación de presión para forzar el paso del agua a través de la membrana.</p>
+						
+						<div class="process-details">
+							<h3>Proceso Técnico</h3>
+							<ul>
+								<li>
+									<strong>Prefiltración:</strong> Eliminación de sedimentos y partículas grandes
+								</li>
+								<li>
+									<strong>Presión:</strong> Aplicación de 2.07-17.24 bar (30-250 psi)
+								</li>
+								<li>
+									<strong>Membrana:</strong> Poliamida de película delgada (TFC)
+								</li>
+								<li>
+									<strong>Tamaño de poro:</strong> 0.0001 micrones (0.1 nanómetros)
+								</li>
+							</ul>
+						</div>
+						
+						<div class="benefits">
+							<h3>Beneficios</h3>
+							<ul>
+								<li>Eliminación de hasta el 99% de contaminantes disueltos</li>
+								<li>Reducción significativa de sales y minerales</li>
+								<li>Eliminación de bacterias y virus</li>
+								<li>Mejora del sabor y olor del agua</li>
+								<li>Proceso libre de químicos</li>
+							</ul>
+						</div>
+
+						<div class="efficiency">
+							<h3>Eficiencia del Sistema</h3>
+							<div class="efficiency-stats">
+								<div class="stat">
+									<span class="number">99.9%</span>
+									<span class="label">Eliminación de TDS</span>
+								</div>
+								<div class="stat">
+									<span class="number">75%</span>
+									<span class="label">Recuperación de agua</span>
+								</div>
+								<div class="stat">
+									<span class="number">100%</span>
+									<span class="label">Automatización</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="osmosis-diagram">
+						<img src="/images/osmosis-diagram.svg" alt="Diagrama del proceso de ósmosis inversa" />
+						<p class="diagram-caption">Proceso de Ósmosis Inversa</p>
+						
+						<div class="technical-specs">
+							<h4>Especificaciones Técnicas</h4>
+							<table>
+								<tr>
+									<th>Parámetro</th>
+									<th>Valor</th>
+								</tr>
+								<tr>
+									<td>Flujo típico</td>
+									<td>150-400 L/h</td>
+								</tr>
+								<tr>
+									<td>Presión de operación</td>
+									<td>2.07-17.24 bar</td>
+								</tr>
+								<tr>
+									<td>Temperatura</td>
+									<td>20-30°C</td>
+								</tr>
+								<tr>
+									<td>pH óptimo</td>
+									<td>6.5-7.5</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<div class="applications">
+					<h3>Aplicaciones</h3>
+					<div class="applications-grid">
+						<div class="application-card">
+							<h4>Industrial</h4>
+							<ul>
+								<li>Producción de agua ultrapura</li>
+								<li>Tratamiento de agua de calderas</li>
+								<li>Procesos de manufactura</li>
+								<li>Industria farmacéutica</li>
+								<li>Producción de semiconductores</li>
+							</ul>
+						</div>
+						<div class="application-card">
+							<h4>Comercial</h4>
+							<ul>
+								<li>Restaurantes y hoteles</li>
+								<li>Centros comerciales</li>
+								<li>Edificios de oficinas</li>
+								<li>Hospitales y clínicas</li>
+								<li>Centros educativos</li>
+							</ul>
+						</div>
+						<div class="application-card">
+							<h4>Residencial</h4>
+							<ul>
+								<li>Purificación de agua potable</li>
+								<li>Reducción de dureza</li>
+								<li>Mejora de calidad del agua</li>
+								<li>Eliminación de contaminantes</li>
+								<li>Protección de electrodomésticos</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="maintenance-section">
+					<h3>Mantenimiento y Cuidados</h3>
+					<div class="maintenance-content">
+						<div class="maintenance-schedule">
+							<h4>Programa de Mantenimiento</h4>
+							<ul>
+								<li>
+									<span class="schedule-time">Mensual</span>
+									<span class="schedule-task">Inspección y limpieza de prefiltros</span>
+								</li>
+								<li>
+									<span class="schedule-time">Trimestral</span>
+									<span class="schedule-task">Análisis de calidad del agua</span>
+								</li>
+								<li>
+									<span class="schedule-time">Semestral</span>
+									<span class="schedule-task">Cambio de cartuchos de prefiltración</span>
+								</li>
+								<li>
+									<span class="schedule-time">Anual</span>
+									<span class="schedule-task">Reemplazo de membranas RO</span>
+								</li>
+							</ul>
+						</div>
+						<a href="/contacto" class="maintenance-cta">Solicitar Servicio de Mantenimiento</a>
+					</div>
+				</div>
+			</section>
+
+			<section id="potable" class="treatment-section">
+				<h2>Tratamiento de Agua Potable</h2>
+				<p>Nuestros procesos de potabilización garantizan agua segura y de alta calidad para consumo humano:</p>
+				<ul>
+					<li>Filtración avanzada</li>
+					<li>Desinfección UV</li>
+					<li>Ósmosis inversa</li>
+					<li>Control de calidad continuo</li>
+				</ul>
+			</section>
+
+			<section id="residual" class="treatment-section">
+				<h2>Tratamiento de Aguas Residuales</h2>
+				<p>Soluciones completas para el tratamiento de aguas residuales industriales y municipales:</p>
+				<ul>
+					<li>Tratamiento biológico</li>
+					<li>Tratamiento físico-químico</li>
+					<li>Remoción de contaminantes específicos</li>
+					<li>Cumplimiento normativo</li>
+				</ul>
+			</section>
+
+			<section id="industrial" class="treatment-section">
+				<h2>Tratamiento Industrial</h2>
+				<p>Sistemas especializados para procesos industriales:</p>
+				<ul>
+					<li>Desmineralización</li>
+					<li>Ablandamiento</li>
+					<li>Tratamiento de agua de calderas</li>
+					<li>Sistemas de enfriamiento</li>
+				</ul>
+			</section>
+		</main>
+		<Footer />
+		<style>
+			main {
+				width: 960px;
+				max-width: calc(100% - 2em);
+				margin: 0 auto;
+				padding: 3em 1em;
+			}
+			.treatment-nav {
+				position: sticky;
+				top: 0;
+				background: white;
+				padding: 1em 0;
+				margin-bottom: 2em;
+				display: flex;
+				justify-content: center;
+				gap: 1em;
+				box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+				z-index: 100;
+			}
+			.nav-item {
+				color: #2c3e50;
+				text-decoration: none;
+				padding: 0.5em 1em;
+				border-radius: 4px;
+				transition: all 0.3s ease;
+			}
+			.nav-item:hover {
+				background: #e3f2fd;
+				color: #2196f3;
+			}
+			.treatment-section {
+				margin-bottom: 4em;
+				padding: 2em;
+				border-radius: 8px;
+				background-color: #f5f5f5;
+			}
+			.osmosis-section {
+				background-color: #ffffff;
+				box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+			}
+			.osmosis-content {
+				display: grid;
+				grid-template-columns: 3fr 2fr;
+				gap: 2em;
+				margin: 2em 0;
+			}
+			.benefits ul {
+				list-style-type: none;
+				padding: 0;
+			}
+			.benefits li {
+				margin: 0.5em 0;
+				padding-left: 1.5em;
+				position: relative;
+			}
+			.benefits li:before {
+				content: "✓";
+				color: #2196f3;
+				position: absolute;
+				left: 0;
+			}
+			.osmosis-diagram {
+				text-align: center;
+			}
+			.osmosis-diagram img {
+				max-width: 100%;
+				border-radius: 8px;
+				box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+			}
+			.diagram-caption {
+				margin-top: 1em;
+				color: #666;
+				font-style: italic;
+			}
+			.applications {
+				margin-top: 3em;
+			}
+			.applications-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+				gap: 2em;
+				margin-top: 1.5em;
+			}
+			.application-card {
+				background: #f8f9fa;
+				padding: 1.5em;
+				border-radius: 8px;
+				box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+			}
+			.application-card h4 {
+				color: #2196f3;
+				margin-bottom: 1em;
+			}
+			.application-card ul {
+				list-style-type: none;
+				padding: 0;
+			}
+			.application-card li {
+				margin: 0.5em 0;
+				padding-left: 1.2em;
+				position: relative;
+			}
+			.application-card li:before {
+				content: "•";
+				color: #2196f3;
+				position: absolute;
+				left: 0;
+			}
+			.maintenance-section {
+				margin-top: 3em;
+				background: #e3f2fd;
+				padding: 2em;
+				border-radius: 8px;
+			}
+			.maintenance-content {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-top: 1em;
+			}
+			.maintenance-content ul {
+				list-style-type: none;
+				padding: 0;
+			}
+			.maintenance-content li {
+				margin: 0.5em 0;
+				padding-left: 1.5em;
+				position: relative;
+			}
+			.maintenance-content li:before {
+				content: "⚡";
+				color: #2196f3;
+				position: absolute;
+				left: 0;
+			}
+			.maintenance-cta {
+				background: #2196f3;
+				color: white;
+				text-decoration: none;
+				padding: 1em 2em;
+				border-radius: 4px;
+				transition: background 0.3s ease;
+				white-space: nowrap;
+			}
+			.maintenance-cta:hover {
+				background: #1976d2;
+			}
+			.process-details ul {
+				list-style-type: none;
+				padding: 0;
+				margin: 1em 0;
+			}
+			.process-details li {
+				margin: 0.8em 0;
+				padding-left: 1.5em;
+				position: relative;
+			}
+			.process-details li:before {
+				content: "→";
+				color: #2196f3;
+				position: absolute;
+				left: 0;
+			}
+			.efficiency {
+				margin-top: 2em;
+			}
+			.efficiency-stats {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 1em;
+				margin-top: 1em;
+			}
+			.stat {
+				text-align: center;
+				padding: 1em;
+				background: #e3f2fd;
+				border-radius: 8px;
+			}
+			.stat .number {
+				display: block;
+				font-size: 1.8em;
+				color: #2196f3;
+				font-weight: bold;
+			}
+			.stat .label {
+				display: block;
+				margin-top: 0.5em;
+				color: #2c3e50;
+				font-size: 0.9em;
+			}
+			.technical-specs {
+				margin-top: 2em;
+				background: #f8f9fa;
+				padding: 1.5em;
+				border-radius: 8px;
+			}
+			.technical-specs table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-top: 1em;
+			}
+			.technical-specs th, .technical-specs td {
+				padding: 0.8em;
+				text-align: left;
+				border-bottom: 1px solid #e1e1e1;
+			}
+			.technical-specs th {
+				color: #2196f3;
+				font-weight: bold;
+			}
+			.maintenance-schedule {
+				flex: 1;
+			}
+			.maintenance-schedule ul {
+				list-style-type: none;
+				padding: 0;
+			}
+			.maintenance-schedule li {
+				display: flex;
+				margin: 1em 0;
+				padding-left: 1.5em;
+				position: relative;
+			}
+			.maintenance-schedule li:before {
+				content: "⚡";
+				color: #2196f3;
+				position: absolute;
+				left: 0;
+			}
+			.schedule-time {
+				font-weight: bold;
+				color: #2196f3;
+				margin-right: 1em;
+				min-width: 100px;
+			}
+			.schedule-task {
+				color: #2c3e50;
+			}
+			@media (max-width: 768px) {
+				.treatment-nav {
+					flex-wrap: wrap;
+				}
+				.osmosis-content {
+					grid-template-columns: 1fr;
+				}
+				.maintenance-content {
+					flex-direction: column;
+					text-align: center;
+				}
+				.maintenance-cta {
+					margin-top: 1.5em;
+				}
+				.efficiency-stats {
+					grid-template-columns: 1fr;
+				}
+				.maintenance-schedule li {
+					flex-direction: column;
+				}
+				.schedule-time {
+					margin-bottom: 0.5em;
+				}
+			}
+		</style>
+	</body>
+</html>

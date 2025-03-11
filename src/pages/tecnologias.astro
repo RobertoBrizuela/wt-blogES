@@ -1,0 +1,85 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>Tecnologías de Tratamiento</h1>
+			
+			<div class="tech-grid">
+				<div class="tech-card">
+					<h2>Ósmosis Inversa</h2>
+					<p>Sistema avanzado de purificación que elimina hasta el 99% de contaminantes disueltos, incluyendo sales, partículas, bacterias y otros contaminantes.</p>
+				</div>
+
+				<div class="tech-card">
+					<h2>Filtración por Membranas</h2>
+					<p>Tecnología de última generación para la separación de sólidos y purificación de agua, incluyendo ultrafiltración y nanofiltración.</p>
+				</div>
+
+				<div class="tech-card">
+					<h2>Tratamiento UV</h2>
+					<p>Desinfección efectiva y sin químicos mediante luz ultravioleta, eliminando microorganismos patógenos sin alterar las propiedades del agua.</p>
+				</div>
+
+				<div class="tech-card">
+					<h2>Electrodeionización</h2>
+					<p>Proceso continuo de desmineralización que combina resinas de intercambio iónico con membranas selectivas y corriente eléctrica.</p>
+				</div>
+
+				<div class="tech-card">
+					<h2>Sistemas MBR</h2>
+					<p>Biorreactores de membrana que combinan el proceso de lodos activados con la filtración por membrana para un tratamiento superior de aguas residuales.</p>
+				</div>
+
+				<div class="tech-card">
+					<h2>Control Automatizado</h2>
+					<p>Sistemas SCADA y control automatizado para monitoreo en tiempo real y optimización de procesos de tratamiento.</p>
+				</div>
+			</div>
+		</main>
+		<Footer />
+		<style>
+			main {
+				width: 960px;
+				max-width: calc(100% - 2em);
+				margin: 0 auto;
+				padding: 3em 1em;
+			}
+			.tech-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 2em;
+				margin-top: 2em;
+			}
+			.tech-card {
+				background: #ffffff;
+				border-radius: 10px;
+				padding: 1.5em;
+				box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+				transition: transform 0.3s ease;
+			}
+			.tech-card:hover {
+				transform: translateY(-5px);
+			}
+			.tech-card h2 {
+				color: #2c3e50;
+				margin-bottom: 0.8em;
+				font-size: 1.4em;
+			}
+			.tech-card p {
+				color: #666;
+				line-height: 1.6;
+			}
+		</style>
+	</body>
+</html>
