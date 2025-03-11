@@ -1,0 +1,124 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import QuoteCalculator from '../components/QuoteCalculator.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<BaseHead title={`Cotización | ${SITE_TITLE}`} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+            <div class="quote-page">
+                <div class="page-header">
+                    <h1>Solicite una Cotización</h1>
+                    <p>Obtenga un presupuesto personalizado para su proyecto de tratamiento de agua</p>
+                </div>
+                <div class="benefits-section">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">⚡</div>
+                        <h3>Respuesta Rápida</h3>
+                        <p>Cotización preliminar instantánea y contacto en 24 horas</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📊</div>
+                        <h3>Presupuesto Detallado</h3>
+                        <p>Desglose completo de servicios y costos estimados</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">👨‍💼</div>
+                        <h3>Asesoría Profesional</h3>
+                        <p>Evaluación técnica personalizada de su proyecto</p>
+                    </div>
+                </div>
+                <QuoteCalculator />
+            </div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+.quote-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.page-header h1 {
+    color: #2196f3;
+    font-size: 2.5em;
+    margin-bottom: 1rem;
+}
+
+.page-header p {
+    color: #666;
+    font-size: 1.2em;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.benefits-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.benefit-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+}
+
+.benefit-icon {
+    font-size: 2.5em;
+    margin-bottom: 1rem;
+}
+
+.benefit-card h3 {
+    color: #2196f3;
+    margin-bottom: 1rem;
+}
+
+.benefit-card p {
+    color: #666;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .quote-page {
+        padding: 1rem;
+    }
+
+    .page-header h1 {
+        font-size: 2em;
+    }
+
+    .page-header p {
+        font-size: 1.1em;
+    }
+
+    .benefits-section {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+</style>
