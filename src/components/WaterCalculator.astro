@@ -1,0 +1,389 @@
+---
+---
+<div class="calculator-container">
+    <div class="calculator-header">
+        <h2>Calculadora de Calidad del Agua</h2>
+        <p>Ingrese los parámetros de su agua para recibir recomendaciones personalizadas</p>
+    </div>
+
+    <form id="waterQualityForm" class="calculator-form">
+        <div class="parameter-group">
+            <h3>Parámetros Físicos</h3>
+            <div class="input-group">
+                <label for="ph">pH:</label>
+                <input type="number" id="ph" name="ph" step="0.1" min="0" max="14" required>
+                <span class="unit">pH</span>
+            </div>
+            <div class="input-group">
+                <label for="tds">Sólidos Disueltos Totales (TDS):</label>
+                <input type="number" id="tds" name="tds" min="0" max="3000" required>
+                <span class="unit">mg/L</span>
+            </div>
+            <div class="input-group">
+                <label for="turbidity">Turbiedad:</label>
+                <input type="number" id="turbidity" name="turbidity" step="0.1" min="0" max="100" required>
+                <span class="unit">NTU</span>
+            </div>
+        </div>
+
+        <div class="parameter-group">
+            <h3>Parámetros Químicos</h3>
+            <div class="input-group">
+                <label for="hardness">Dureza Total:</label>
+                <input type="number" id="hardness" name="hardness" min="0" max="1000" required>
+                <span class="unit">mg/L CaCO₃</span>
+            </div>
+            <div class="input-group">
+                <label for="chlorine">Cloro Residual:</label>
+                <input type="number" id="chlorine" name="chlorine" step="0.1" min="0" max="10" required>
+                <span class="unit">mg/L</span>
+            </div>
+            <div class="input-group">
+                <label for="iron">Hierro Total:</label>
+                <input type="number" id="iron" name="iron" step="0.01" min="0" max="10" required>
+                <span class="unit">mg/L</span>
+            </div>
+        </div>
+
+        <button type="submit" class="calculate-button">Calcular Resultados</button>
+    </form>
+
+    <div id="results" class="results-container" style="display: none;">
+        <h3>Resultados del Análisis</h3>
+        <div class="results-grid">
+            <div class="quality-score">
+                <div class="score-circle">
+                    <span id="qualityScore">0</span>
+                </div>
+                <p>Índice de Calidad</p>
+            </div>
+            <div class="recommendations">
+                <h4>Recomendaciones</h4>
+                <ul id="recommendationsList"></ul>
+            </div>
+        </div>
+        <div class="parameters-chart">
+            <canvas id="parametersChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+import Chart from 'chart.js/auto';
+
+let chart = null;
+
+function calculateWaterQuality(formData) {
+    const parameters = {
+        ph: parseFloat(formData.get('ph')),
+        tds: parseFloat(formData.get('tds')),
+        turbidity: parseFloat(formData.get('turbidity')),
+        hardness: parseFloat(formData.get('hardness')),
+        chlorine: parseFloat(formData.get('chlorine')),
+        iron: parseFloat(formData.get('iron'))
+    };
+
+    // Rangos ideales para cada parámetro
+    const idealRanges = {
+        ph: { min: 6.5, max: 8.5 },
+        tds: { min: 0, max: 500 },
+        turbidity: { min: 0, max: 5 },
+        hardness: { min: 0, max: 200 },
+        chlorine: { min: 0.2, max: 1.5 },
+        iron: { min: 0, max: 0.3 }
+    };
+
+    // Calcular puntuación para cada parámetro
+    let scores = {};
+    let totalScore = 0;
+    
+    for (let param in parameters) {
+        let value = parameters[param];
+        let range = idealRanges[param];
+        let score = 100;
+
+        if (value < range.min) {
+            score -= ((range.min - value) / range.min) * 100;
+        } else if (value > range.max) {
+            score -= ((value - range.max) / range.max) * 100;
+        }
+
+        scores[param] = Math.max(0, Math.min(100, score));
+        totalScore += scores[param];
+    }
+
+    const averageScore = Math.round(totalScore / Object.keys(parameters).length);
+
+    // Generar recomendaciones
+    let recommendations = [];
+    
+    if (parameters.ph < 6.5) {
+        recommendations.push("Se recomienda un sistema de neutralización para aumentar el pH");
+    } else if (parameters.ph > 8.5) {
+        recommendations.push("Se recomienda un sistema de acidificación para reducir el pH");
+    }
+
+    if (parameters.tds > 500) {
+        recommendations.push("Se recomienda un sistema de ósmosis inversa para reducir los sólidos disueltos");
+    }
+
+    if (parameters.hardness > 200) {
+        recommendations.push("Se recomienda un suavizador de agua para reducir la dureza");
+    }
+
+    if (parameters.iron > 0.3) {
+        recommendations.push("Se recomienda un sistema de filtración de hierro");
+    }
+
+    if (parameters.turbidity > 5) {
+        recommendations.push("Se recomienda un sistema de filtración multimedia");
+    }
+
+    if (parameters.chlorine > 1.5) {
+        recommendations.push("Se recomienda un filtro de carbón activado para reducir el cloro");
+    }
+
+    return {
+        scores,
+        averageScore,
+        recommendations
+    };
+}
+
+function updateChart(scores) {
+    const ctx = document.getElementById('parametersChart');
+    
+    if (chart) {
+        chart.destroy();
+    }
+
+    chart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: [
+                'pH',
+                'TDS',
+                'Turbiedad',
+                'Dureza',
+                'Cloro',
+                'Hierro'
+            ],
+            datasets: [{
+                label: 'Calidad del Agua',
+                data: Object.values(scores),
+                fill: true,
+                backgroundColor: 'rgba(33, 150, 243, 0.2)',
+                borderColor: 'rgb(33, 150, 243)',
+                pointBackgroundColor: 'rgb(33, 150, 243)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgb(33, 150, 243)'
+            }]
+        },
+        options: {
+            elements: {
+                line: {
+                    borderWidth: 3
+                }
+            },
+            scales: {
+                r: {
+                    angleLines: {
+                        display: true
+                    },
+                    suggestedMin: 0,
+                    suggestedMax: 100
+                }
+            }
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('waterQualityForm');
+    const results = document.getElementById('results');
+    const qualityScore = document.getElementById('qualityScore');
+    const recommendationsList = document.getElementById('recommendationsList');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const { scores, averageScore, recommendations } = calculateWaterQuality(formData);
+
+        // Actualizar resultados
+        results.style.display = 'block';
+        qualityScore.textContent = averageScore;
+        
+        // Actualizar recomendaciones
+        recommendationsList.innerHTML = recommendations
+            .map(rec => `<li>${rec}</li>`)
+            .join('');
+
+        // Actualizar gráfico
+        updateChart(scores);
+    });
+});
+</script>
+
+<style>
+.calculator-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.calculator-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.calculator-header h2 {
+    color: #2196f3;
+    margin-bottom: 0.5rem;
+}
+
+.calculator-form {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.parameter-group {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.parameter-group h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.input-group {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.input-group label {
+    color: #2c3e50;
+}
+
+.input-group input {
+    padding: 0.5rem;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    width: 100%;
+}
+
+.unit {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.calculate-button {
+    background: #2196f3;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+
+.calculate-button:hover {
+    background: #1976d2;
+}
+
+.results-container {
+    margin-top: 2rem;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.quality-score {
+    text-align: center;
+}
+
+.score-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #2196f3;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5em;
+    margin: 0 auto 1rem;
+}
+
+.recommendations {
+    padding: 1rem;
+}
+
+.recommendations h4 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.recommendations ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.recommendations li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5em;
+    position: relative;
+}
+
+.recommendations li:before {
+    content: "→";
+    color: #2196f3;
+    position: absolute;
+    left: 0;
+}
+
+.parameters-chart {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 768px) {
+    .calculator-container {
+        padding: 1rem;
+    }
+
+    .input-group {
+        grid-template-columns: 1fr;
+    }
+
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .score-circle {
+        width: 100px;
+        height: 100px;
+        font-size: 2em;
+    }
+}
+</style>
